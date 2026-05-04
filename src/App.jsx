@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ArticleCard from './components/ArticleCard.jsx';
 
 function App() {
 
@@ -30,5 +31,51 @@ function App() {
     setTitle("");
     setContent("");
 
-  
-}}
+
+  }
+
+  return (
+    <div>
+
+      <h1>Blog</h1>
+
+      <ul>
+        {articles.map(function (article) {
+          return (
+            <ArticleCard
+              key={article.id}
+              title={article.title}
+              content={article.content}
+            />
+          );
+        })}
+      </ul>
+
+      <form onSubmit={handleSubmit}>
+
+        <input
+          type="text"
+          placeholder="Titolo articolo"
+          value={title}
+          onChange={function (e) {
+            setTitle(e.target.value);
+          }}
+        />
+
+        <input
+          type="text"
+          placeholder="Contenuto articolo"
+          value={content}
+          onChange={function (e) {
+            setContent(e.target.value);
+          }}
+        />
+
+        <button type="submit">
+          Aggiungi articolo
+        </button>
+
+      </form>
+
+    </div>
+  )}
